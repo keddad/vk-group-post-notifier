@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  vk-group-post-notifier:
+    environment:
+      - TOKEN=
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - type: bind
+        source: ./db.json
+        target: /app/db.json
