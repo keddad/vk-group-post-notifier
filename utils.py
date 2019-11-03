@@ -18,7 +18,7 @@ def is_community_open(link: str) -> bool:
     except requests.exceptions.MissingSchema:
         page = html.fromstring(requests.get("http://" + link).text)
 
-    if len(page.cssselect(".post__anchor")) == 0:
+    if len(page.cssselect(".post__anchor") + page.cssselect(".post")) == 0:
         return False
     else:
         return True
@@ -31,7 +31,7 @@ def get_current_latest_post(link: str):
         page = html.fromstring(requests.get("http://" + link).text)
 
     try:
-        latest_post_name = page.cssselect(".post__anchor")[0].attrib["name"]
+        latest_post_name = (page.cssselect(".post__anchor") + page.cssselect(".post"))[0].attrib["name"]
     except IndexError:
         return "AAAAA"
 
