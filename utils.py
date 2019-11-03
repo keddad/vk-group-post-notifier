@@ -18,7 +18,7 @@ def is_community_open(link: str) -> bool:
     except requests.exceptions.MissingSchema:
         page = html.fromstring(requests.get("http://" + link).text)
 
-    if len(page.cssselect("div.post")) == 0:
+    if len(page.cssselect(".post__anchor")) == 0:
         return False
     else:
         return True
