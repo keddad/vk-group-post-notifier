@@ -18,10 +18,10 @@ def is_community_open(link: str) -> bool:
     except requests.exceptions.MissingSchema:
         page = html.fromstring(requests.get("http://" + link).text)
 
-    if len(page.cssselect("div.service_msg")) == 0 or len(page.cssselect("div.post")) == 0:
-        return True
-    else:
+    if len(page.cssselect("div.post")) == 0:
         return False
+    else:
+        return True
 
 
 def get_current_latest_post(link: str):
