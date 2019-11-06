@@ -46,6 +46,7 @@ def addgroup(update, context):
         return
 
     link = "vk.com/" + link.split("/")[-1]
+    link = link.split("?")[0]
 
     Group = Query()
     if db.contains(Group.link == link):
